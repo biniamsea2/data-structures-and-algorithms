@@ -22,10 +22,11 @@ In this alphabetization, capital letters come before lower case letters.
 For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 ------------------------------------------------------------------------------------------------ */
 
-const alphabetize = (arr) => {
-  arr.sort((arr))
-  // Solution code here...
-};
+// const alphabetize = (arr) => {
+//   arr.sort(a,b)=>{
+//     if (a.t)
+//   }
+// };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -36,14 +37,14 @@ Write a function named sortByLength that takes in an array of strings and return
 const sortByLength = (arr) => {
   arr.sort((a, b) => {
     if (a.length < b.length) {
-            return -1;
-        }else if (a.length > b.length){
-            return 1;
-        }else {
-            return 0;
-        }
-    });
-    return arr;
+      return -1;
+    }else if (a.length > b.length){
+      return 1;
+    }else {
+      return 0;
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -55,8 +56,16 @@ For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, an
 ------------------------------------------------------------------------------------------------ */
 
 const alphabetizeBetter = (arr) => {
-  // Solution code here...
-};
+  arr.sort ((a,b) => {
+    if(a.toLowerCase) > (b.toLowerCase){
+      return 1;
+    } else if (a.toLowerCase) < (b.toLowerCase){
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+  )};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -192,7 +201,7 @@ xdescribe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should sort strings by length', () => {
     const ans = sortByLength(['alphabet', 'Zebra', 'Alphabet', 'carrot']);
     expect(ans.slice(0,2)).toStrictEqual(['Zebra', 'carrot']);
@@ -203,7 +212,7 @@ xdescribe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should alphabetize without regard to capitalization', () => {
     expect(alphabetizeBetter(['Alice', 'apple', 'alert', 'Average'])).toStrictEqual([ 'alert', 'Alice', 'apple', 'Average' ]);
     const ans = alphabetizeBetter(['alphabet', 'Zebra', 'Alphabet', 'carrot']);
