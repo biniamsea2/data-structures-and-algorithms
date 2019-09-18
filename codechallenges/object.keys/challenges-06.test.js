@@ -70,12 +70,12 @@ let characters = [
 ];
 
 const getHouses = (arr) => {
-  let houses = [];
-  arr.forEach(character =>{
-      houses.push(characters.house)
-  }
-  )
-  return houses;
+    let houses = [];
+    arr.forEach(characters => {
+        houses.push(characters.house)
+    }
+    )
+    return houses;
 };
 
 /*------------------------------------------------------------------------------------------------
