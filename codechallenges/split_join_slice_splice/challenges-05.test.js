@@ -15,8 +15,8 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
-  for (let i = 0; i <= str.length; i++){
-    result.push(str.slice(i));
+  for(let i = 0; i<str.length+1; i++){
+    result.push(str.slice(i, str.length));
   }
   return result;
 };
@@ -30,10 +30,10 @@ Write a function name wordsToCharList that, given a string as input, returns a n
 For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 ------------------------------------------------------------------------------------------------ */
 
-const wordsToCharList = (arr) => {
-  const wordsToCharList = (arr) => {
-    return arr.split('');
-};
+
+const wordsToCharList = (arr)=> arr.split('');
+
+
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -78,15 +78,17 @@ const gruffaloCrumble = {
 
 
 const listFoods = (recipe) => {
-    let result = [];
-    let regex = /^(\S+\s){2}/gi;
-    let sliced = recipe.ingredients.slice();
-  
-    sliced.forEach(ingredient => {
-      result.push(ingredient.replace(regex, ''));
-    })
-    return result;
-  };
+
+  let result = [];
+
+  recipe.ingredients.forEach(ingredient => {
+    ingredient = ingredient.replace(/\d+\s/, '');
+    ingredient = ingredient.slice(ingredient.indexOf(' ')+1);
+    result.push(ingredient);
+  });
+  return result;
+};
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -98,11 +100,13 @@ You may also use other string or array methods.
 
 const splitFoods = (recipe) => {
   let result = [];
-  let sliced = recipe.ingredients.slice();
+  for (let i=0; i<recipe.ingredients.length;i++){
+    let tempArr = recipe.ingredients[i].split(' ');
+    tempArr.shift();
+    tempArr.shift();
+    result.push(tempArr.join(' '));
+  }
 
-  sliced.forEach(ingredient => {
-    result.push(ingredient.split(' ').slice(2).join(' '));
-  })
   return result;
 };
 
@@ -116,15 +120,14 @@ Write a function named stepAction that takes in the recipe and extracts the acti
 Return a new array containing just the verbs. For example, ['Mix until evenly distributed'] returns ['Mix'].
 ------------------------------------------------------------------------------------------------ */
 
-  const stepActions = (recipe) => {
-    let final = [];
-    let sliced = recipe.steps.slice();
+const stepActions = (recipe) => {
+  let result = [];
+  recipe.steps.forEach(step=>{
+    result.push(step.split(' ').slice(0,1).join(''));
+  });
+  return result;
+};
 
-    sliced.forEach(step => {
-      final.push(step.split(' ', 1).toString());
-    })
-    return final;
-  };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -140,14 +143,17 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  for (let i = arr.length; i >= 0; i--) {
-    if (arr[i] % 2 === 0) {
-      arr.splice( i, 1);
+  let place = 0;
+  while (place < arr.length) {
+    if ((arr[place] % 2) === 0) {
+      arr.splice(place, 1);
+    }
+    else {
+      place++;
     }
   }
-return arr;
-};
 
+};
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
 
@@ -164,12 +170,16 @@ removeLastCharacters('Gregor', 9) returns ''
 ------------------------------------------------------------------------------------------------ */
 
 const removeLastCharacters = (str, numberOfCharacters) => {
-  let temp = '';
-  
-  if(str.length > numberOfCharacters){
-    temp = str.split('').splice(0, str.length - numberOfCharacters).join('');
+  if(numberOfCharacters> str.length){
+    return '';
+  } else if (numberOfCharacters <0){
+    return str;
+  } else{
+    const sliceIdx = str.length - numberOfCharacters;
+
+    return str.slice(0, sliceIdx);
   }
-  return temp;
+
 };
 
 
