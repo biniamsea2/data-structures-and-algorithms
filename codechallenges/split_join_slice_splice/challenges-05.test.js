@@ -135,14 +135,6 @@ For example:
   console.log(integers) will print [1, 3, 5]
 ------------------------------------------------------------------------------------------------ */
 
-//   for(let i = arr.length; i>=0; i--){
-//     if(arr[i] % 2 === 0){
-//       arr.slice(i, 1);
-//     }
-//   }
-//   return arr;
-// };
-
 const removeEvenValues = (arr) => {
   let place = 0;
   while (place < arr.length) {
