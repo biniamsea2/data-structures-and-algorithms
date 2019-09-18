@@ -21,6 +21,7 @@ const howMuchPencil = (str) => {
   return result;
 };
 
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
@@ -29,7 +30,9 @@ Write a function name wordsToCharList that, given a string as input, returns a n
 For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 ------------------------------------------------------------------------------------------------ */
 
+
 const wordsToCharList = (arr)=> arr.split('');
+
 
 
 
@@ -75,6 +78,7 @@ const gruffaloCrumble = {
 
 
 const listFoods = (recipe) => {
+
   let result = [];
 
   recipe.ingredients.forEach(ingredient => {
@@ -84,6 +88,7 @@ const listFoods = (recipe) => {
   });
   return result;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -101,6 +106,7 @@ const splitFoods = (recipe) => {
     tempArr.shift();
     result.push(tempArr.join(' '));
   }
+
   return result;
 };
 
@@ -121,6 +127,7 @@ const stepActions = (recipe) => {
   });
   return result;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -145,6 +152,7 @@ const removeEvenValues = (arr) => {
       place++;
     }
   }
+
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
@@ -171,6 +179,7 @@ const removeLastCharacters = (str, numberOfCharacters) => {
 
     return str.slice(0, sliceIdx);
   }
+
 };
 
 
