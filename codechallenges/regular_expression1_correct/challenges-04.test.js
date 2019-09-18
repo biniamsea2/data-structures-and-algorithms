@@ -49,9 +49,10 @@ const citiesAtoJ = (arr) => {
     result.forEach(data => {
       arr1.push(data.trim());
     })
-}
+  }
   return arr1;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -222,7 +223,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-describe('Testing challenge 7', () => {
+xdescribe('Testing challenge 7', () => {
   test('It should return an array of instances of "sells", shells", and "seashells"', () => {
     expect(findShells(seashells)).toStrictEqual(['sells', 'seashells', 'shells', 'sells', 'seashells', 'sells', 'shells', 'sells', 'shells']);
     expect(findShells(seashells).length).toStrictEqual(9);
