@@ -13,7 +13,7 @@ const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningT
 };
 
 const getCourseKeys = (obj) => {
-  let result = Object.keys(courseInfo);
+  let result = Object.keys(obj);
   return result;
 };
 
@@ -70,12 +70,11 @@ let characters = [
 ];
 
 const getHouses = (arr) => {
-    let houses = [];
-    arr.forEach(characters => {
-        houses.push(characters.house)
-    }
-    )
-    return houses;
+  let houses = [];
+  arr.forEach(characters => {
+    houses.push(characters.house)
+  });
+  return houses;
 };
 
 /*------------------------------------------------------------------------------------------------
@@ -91,7 +90,15 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
+  let temp = false;
+  Object.values(arr).forEach(obj =>{
+    if(obj.name === character){
+      if(obj.children.length > 0) {
+        temp = true;
+      }
+    }
+  })
+  return temp;
 
 };
 
@@ -104,7 +111,17 @@ The input and output of this function are the same as the input and output from 
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  let temp = false;
+  let tempArr = Object.entries(arr);
+
+  for (let i = 0; i < tempArr.length; i++){
+    if (tempArr[i][1].name === character){
+      if(tempArr[i][1].children.length > 0){
+        temp = true;
+      }
+    }
+  }
+  return temp;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -114,7 +131,19 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  let num = 0;
+  arr.forEach(obj =>{
+    if(Object.values(obj)[0]){
+      num ++;
+    }
+    if (Object.values(obj)[1]){
+      num++;
+    }
+    if (Object.values(obj)[2].length){
+      num += Object.values(obj)[2].length;
+    }
+  });
+  return num;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -181,7 +210,7 @@ describe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return true for characters that have children', () => {
     expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
   });
@@ -191,7 +220,7 @@ xdescribe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return true for characters that have children', () => {
     expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
   });
@@ -201,7 +230,7 @@ xdescribe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return the number of characters in the array', () => {
     expect(totalCharacters(characters)).toStrictEqual(26);
   });
