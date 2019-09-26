@@ -1,5 +1,6 @@
 'use strict';
 
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
 
@@ -23,8 +24,15 @@ const alkiBeach = [33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17];
 const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
-  let sum = 
-
+  let sum = [];
+  for (let i = 0; i < hoursOpen.length; i++) {
+    let final = 0;
+    for (let x = 0; x < stores.length; x++) {
+      final += stores[x][i];
+    }
+    sum.push(final);
+  }
+  return sum;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -38,7 +46,15 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 ------------------------------------------------------------------------------------------------ */
 
 const salesData = (hours, data) => {
-  // Solution code here...
+  let final = [];
+  grandTotal(cookieStores).forEach((value, index)=>{
+    let tempObj = {
+      sales: value + ' cookies',
+      time: hoursOpen[index]
+    }
+    final.push(tempObj);
+  })
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -60,7 +76,15 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  let final = arr.reduce((answerSoFar, store)=>{
+    answerSoFar += store.items.reduce((total, item)=>{
+      if(item.name === 'Treats')
+        total += item.quantity;
+      return total;
+    },0)
+    return answerSoFar;
+  },0)
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -82,7 +106,20 @@ The top row of the board is considered row zero and row numbers increase as they
 ------------------------------------------------------------------------------------------------ */
 
 const battleship = (board, row, col) => {
-  //  Solution code here...
+  let final = '';
+  board.forEach((arr, arrRow)=>{
+    arr.forEach((value, column)=>{
+      if (column === col && arrRow === row && value ==='#'){
+        final = 'hit';
+      }
+      else{
+        if(final != 'hit'){
+          final = 'miss';
+        }
+      }
+    })
+  })
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -94,7 +131,14 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = (numbers) => {
-  // Solution code here...
+  return numbers.reduce((answerSoFar, arr)=>{
+    let end = arr.reduce((product, value)=>{
+      product = product * value
+      return product;
+    },1)
+    answerSoFar = end * answerSoFar;
+    return answerSoFar;
+  }, 1)
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -114,7 +158,15 @@ const weeklyTemperatures = [
 ];
 
 const averageDailyTemperature = (weather) => {
-  // Solution code here...
+  let total = 0;
+  let count = weather.reduce((answerSoFar, arr)=>{
+    arr.forEach(value =>{
+      total += value;
+    })
+    answerSoFar += arr.length;
+    return answerSoFar;
+  }, 0)
+  return total / count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -135,7 +187,18 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+  let final = 500;
+  weather.forEach(week =>{
+    let sum = 0;
+    week.forEach(day =>{
+      sum += day;
+    })
+    let avg = sum / week.length;
+    if (avg < final){
+      final = avg;
+    }
+  })
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -151,7 +214,19 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
-  // Solution code here...
+  let final = [];
+  let sum = 0;
+  str.split('').forEach((value)=>{
+    if (parseInt(value)){
+      sum += parseInt(value);
+    }
+    else if (value === '\n'){
+      final.push(sum)
+      sum = 0;
+    }
+  })
+  final.push(sum)
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
